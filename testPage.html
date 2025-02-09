@@ -1,0 +1,229 @@
+<html>
+<head>
+    <title>Test Website</title>
+    <link rel="stylesheet" href="testPage.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<style>
+.mn{
+    margin-top:10px;
+    margin-left:10px;
+    margin-right:10 px;
+   }
+.heading{
+ 	background:aqua;
+}
+
+</style>
+</head>
+<body class="mn">
+    <div class="heading"><h1>ECET MOCK TEST</h1></div>
+    <div class="sub-heading">
+        <h2>Computer Science and Engineering</h2>
+        <div class="timing"><h2>Time :</h2>
+            <div id="countdown"></div>
+
+        </div>
+    </div>
+    <div class="top-container">
+        <div class="table-container">
+            <a href="#questionNumber1" onclick="updateQuestionbynum(1)"> <div>Maths</div></a>
+            <hr class="solid">
+           <a href="#questionNumber51" onclick="updateQuestionbynum(51)"> <div>Physics</div></a>
+            <hr class="solid">
+            <a href="#questionNumber76" onclick="updateQuestionbynum(76)"><div>Chemistry</div></a>
+            <hr class="solid">
+            <a href="#questionNumber101" onclick="updateQuestionbynum(101)"><div>Core subject</div></a>
+            <hr class="rounded">
+            <div>Questions</div>
+            <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example">
+                <a id="link-question"><div id="question-numbers-container"></div></a>
+            </div>
+            
+        </div>
+        
+        <div class="question-container">
+            <div class="question"> <p class="question-text">1. Question </p>
+            </div>
+           
+            <form>
+                <div class="space-container"></div>
+                <input type="radio" name="q1" value="option1" ><label id="option1"></label>
+                <hr class="solid">
+                <input type="radio" name="q1" value="option2" ><label id="option2"></label>
+                <hr class="solid">
+                <input type="radio" name="q1" value="option3" ><label id="option3"></label>
+                <hr class="solid">
+                <input type="radio" name="q1" value="option4" ><label id="option4"></label>
+            </form>
+        </div>
+    </div>
+    <div class="buttons">
+        <button onclick="prevQuestion()" class="button btn-primary">Prev</button>
+        <button onclick="nextQuestion()"  class="nextbtn">Next</button>
+       <div class="button submitBtn"><button onclick="onclickSubmit()"  class="nextbtn">Submit</button></div> 
+    </div>
+
+    <script>
+        const numQuestions = 200; // Replace with the actual number of questions
+        const questionNumbersContainer = document.getElementById('question-numbers-container');
+      
+        for (let i = 1; i <= numQuestions; i++) {
+          const questionNumberElement = document.createElement('div');
+          questionNumberElement.textContent = i;
+          questionNumberElement.setAttribute('id',`questionNumber${i}`);
+          questionNumberElement.classList.add('question-number');
+          questionNumberElement.addEventListener('click', () => {
+            // Replace with logic to show the corresponding question
+            console.log(`Clicked on question ${i}`);
+            updateQuestionbynum(i);
+          });
+          questionNumbersContainer.appendChild(questionNumberElement);
+      
+          const dividerElement = document.createElement('hr');
+          dividerElement.classList.add("question-number-divider");
+          questionNumbersContainer.appendChild(dividerElement);
+        }
+      </script>
+      
+</html>
+
+    <script>
+        var currentQuestion = 1;
+        var totalQuestions = 10;
+        
+        // Set the countdown time (in seconds)
+var countdownTime = 3 * 60 * 60; // 3 hours in seconds
+
+// Update the countdown timer every second
+var countdownTimer = setInterval(function() {
+  // Decrement the countdown time
+  countdownTime--;
+
+  // If the countdown has ended, stop the timer
+  if (countdownTime < 0) {
+    clearInterval(countdownTimer);
+    alert("Time's up!");
+  } else {
+    // Convert the countdown time to hours, minutes, and seconds
+    var hours = Math.floor(countdownTime / 3600);
+    var minutes = Math.floor((countdownTime - (hours * 3600)) / 60);
+    var seconds = countdownTime - (hours * 3600) - (minutes * 60);
+
+    // Update the countdown display
+    var countdownDiv = document.getElementById("countdown");
+    countdownDiv.innerHTML =  " 0"+hours + ":" + minutes + ":" + seconds + "";
+  }
+}, 1000);
+    function navigate(){
+        var num=document.getElementById("question-number1");
+        var mydiv= num.innerHTML;
+        console.log(mydiv);
+    }
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                currentQuestion--;
+                updateQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                updateQuestion();
+            }
+        }
+       const questions =[
+  {
+    question: "If det [[2, x, 3], [4, 1, 6], [- 1, 2, 7]] = 0 then the value of x is?",
+    options: ["6", "5/3", "7", "1/5"],
+    answer: 1,
+  },
+  {
+    question: "",
+    options: ["option 1", "Option 2", "Option 3", "Option 4"],
+    answer: 2,
+  },
+  {
+    question: "",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    answer: 3,
+  },
+  {
+    question: "Question 4?",
+    options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+    answer: 4,
+  },
+];
+
+        function updateQuestionbynum(i) {
+            currentQuestion=i;
+            var nextButton = document.querySelector(".nextbtn");
+    if (currentQuestion == totalQuestions) {
+        nextButton.innerHTML = "Submit";
+        nextButton.classList.add("disablebtn");
+    } else {
+        nextButton.innerHTML = "Next";
+        nextButton.classList.remove("disablebtn");
+    }
+            var questionNumberElements = document.getElementsByClassName("question-number");
+            for (var i = 0; i < questionNumberElements.length; i++) {
+                questionNumberElements[i].classList.remove("current-question");
+            }
+            questionNumberElements[currentQuestion - 1].classList.add("current-question");
+
+            var questionTextElement = document.querySelector(".question-text");
+            questionTextElement.innerHTML = currentQuestion +"."+questions[currentQuestion-1].question;
+            var optionsT = questions[currentQuestion-1].options;
+            var text= questions[currentQuestion-1].options[0];
+            var text2 =questions[currentQuestion-1].options[1];
+            var text3= questions[currentQuestion-1].options[2];
+            var text4 =questions[currentQuestion-1].options[3];
+             var option1 = document.getElementById("option1").innerHTML= text;
+            
+            var option2 = document.getElementById("option2").innerHTML=text2;
+            var option3 = document.getElementById("option3").innerHTML=text3;
+            var option4 = document.getElementById("option4").innerHTML=text4;
+ 
+            option1.textContent = optionsT[0];
+                     
+            var radios = document.querySelectorAll('input[type="radio"]');
+        }
+        function updateQuestion() {
+           
+            var nextButton = document.querySelector(".nextbtn");
+    if (currentQuestion == totalQuestions) {
+        nextButton.innerHTML = "Submit";
+        nextButton.classList.add("disablebtn");
+    } else {
+        nextButton.innerHTML = "Next";
+        nextButton.classList.remove("disablebtn");
+    }
+            var questionNumberElements = document.getElementsByClassName("question-number");
+            for (var i = 0; i < questionNumberElements.length; i++) {
+                questionNumberElements[i].classList.remove("current-question");
+            }
+            questionNumberElements[currentQuestion - 1].classList.add("current-question");
+
+            var questionTextElement = document.querySelector(".question-text");
+            questionTextElement.innerHTML = currentQuestion +" "+questions[currentQuestion-1].question + currentQuestion + "?";
+            var optionsT = questions[currentQuestion-1].options;
+            var text= questions[currentQuestion-1].options[0];
+            var text2 =questions[currentQuestion-1].options[1];
+            var text3= questions[currentQuestion-1].options[2];
+            var text4 =questions[currentQuestion-1].options[3];
+             var option1 = document.getElementById("option1").innerHTML= text;
+            
+            var option2 = document.getElementById("option2").innerHTML=text2;
+            var option3 = document.getElementById("option3").innerHTML=text3;
+            var option4 = document.getElementById("option4").innerHTML=text4;
+ 
+            option1.textContent = optionsT[0];
+                     
+            var radios = document.querySelectorAll('input[type="radio"]');
+        }
+        updateQuestion();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Feedback Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
+		}
+		
+		h1 {
+			font-size: 2em;
+			text-align: center;
+			margin-top: 50px;
+		}
+		
+		form {
+			width: 80%;
+			margin: 0 auto;
+			background-color: #f7f7f7;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+		
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+		
+		input[type="text"], textarea {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			font-size: 1em;
+			resize: none;
+		}
+		
+		input[type="submit"] {
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			padding: 10px 20px;
+			font-size: 1em;
+			cursor: pointer;
+		}
+		
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<h1>Feedback Form</h1>
+	<form action="thankyou.html" method="get">
+		<label for="name">Name:</label>
+		<input type="text" id="name" name="name" required>
+		
+		<label for="email">Email:</label>
+		<input type="text" id="email" name="email" required>
+		
+		<label for="message">Message:</label>
+		<textarea id="message" name="message" rows="8" required></textarea>
+		
+		<input   method="post" type="submit" value="submit"></a>
+	</form>
+    <!--<form action="submit-feedback.php" method="post">
+        <!-- form fields go here -->
+        <!--<input type="submit" value="Submit">
+      </form>                                                edekadi mass mowa-->
+      
+</body>
+</html>
